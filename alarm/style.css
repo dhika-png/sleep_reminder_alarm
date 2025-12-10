@@ -1,0 +1,220 @@
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a5f7a, #159895);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 500px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        .header {
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: #FFD700;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .time-display {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin: 20px 0;
+            color: #FFD700;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .date-display {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .alarm-controls {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+
+        .alarm-controls h2 {
+            margin-bottom: 15px;
+            color: #FFD700;
+        }
+
+        .time-input {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .time-input select {
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+            width: 80px;
+            text-align: center;
+        }
+
+        .alarm-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        button {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .set-alarm {
+            background: #FFD700;
+            color: #1a5f7a;
+        }
+
+        .set-alarm:hover {
+            background: #ffed4e;
+            transform: translateY(-2px);
+        }
+
+        .stop-alarm {
+            background: #ff4d4d;
+            color: white;
+        }
+
+        .stop-alarm:hover {
+            background: #ff6666;
+            transform: translateY(-2px);
+        }
+
+        .alarm-list {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .alarm-list h2 {
+            margin-bottom: 15px;
+            color: #FFD700;
+        }
+
+        .alarm-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            margin-bottom: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        .alarm-time {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .delete-alarm {
+            background: #ff4d4d;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+
+        .active-alarm {
+            background: rgba(255, 215, 0, 0.3);
+            border: 2px solid #FFD700;
+        }
+
+        .banyuwangi-elements {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 30px;
+            opacity: 0.8;
+        }
+
+        .element {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 0.9rem;
+        }
+
+        .element i {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        footer {
+            margin-top: 30px;
+            text-align: center;
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        /* Animasi untuk alarm aktif */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .alarm-active {
+            animation: pulse 1s infinite;
+            color: #ff4d4d;
+        }
+
+        /* Responsif */
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+            
+            .time-display {
+                font-size: 2.5rem;
+            }
+            
+            .time-input {
+                flex-wrap: wrap;
+            }
+            
+            .alarm-buttons {
+                flex-direction: column;
+            }
+        }

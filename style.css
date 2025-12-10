@@ -1,0 +1,107 @@
+body{
+    background-color: grey;
+
+}
+
+.container{
+
+    width: 39rem;
+    height: 10rem;
+    background-color: black;
+    border-radius: 10rem;
+    color: aliceblue;
+    position: absolute;
+    font-size: 70px;
+    max-height: 100%;
+    float: right;
+    display: block;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    top: 2rem;
+}
+
+.tes2{
+    justify-content: center;
+    align-items: center;
+    display: flex
+}
+
+.tombol{
+    width: 180px;
+    height: 80px;
+    border-radius: 98px;
+    background-color: rgb(139, 9, 9);
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    left: 400px;
+    top: 35px;
+    position: absolute;
+     transition: all 0.7s ease-in-out;  
+     cursor: pointer;
+}
+.tombol.active{
+    transition: all 0.7s ease-in-out;   
+    background-color: green;
+    .circle{
+        transform: translateX(100px);
+         transition: all 0.7s ease-in-out;      
+    }
+}
+.jam{
+    position: absolute;
+    top: 40px;
+    left: 50px;
+    cursor: pointer;
+}
+.circle{
+    width: 70px;
+    height: 70px;
+    background-color: aliceblue;
+    border-radius: 50%;
+    margin-left: 5px;
+     transition: all 0.7s ease-in-out;  
+}
+.popup{
+   
+    top: 200px;
+    left: 50px;
+    width: 500px;
+    height: 300px;
+    background-color: aliceblue;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15rem;
+    display: flex;
+    flex-direction: column;
+    z-index: 999;
+    box-shadow: 0 -2 44 32 black ;
+    display: none;
+}
+.popup.active{
+    display: flex;
+}
+.notekibidi{
+    width: 300px;
+    height: 30px;
+}
+
+.alarmkibidi{
+    width: 303px;
+    height: 30px;
+}
+
+
+
+.tongbolkibidi{
+    margin-top: 25px;
+    gap: 10px;
+    transform: scale(1.5);
+    cursor: pointer;
+}
+h1{
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
