@@ -1,6 +1,6 @@
 body{
-    background-color: grey;
-
+    margin: 0;
+    padding: 0;
 }
 
 .container{
@@ -109,4 +109,20 @@ h1{
     text-align: center;
     justify-content: center;
     align-items: center;
+}
+.banner{
+    height: 100vh;
+    background-image: url(./night.jpg);
+    background-size: cover;
+    background-position: top;
+}
+.tes {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
 }
