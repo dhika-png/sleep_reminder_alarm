@@ -1,34 +1,36 @@
-// Update waktu dan tanggal secara real-time
+let suara = new Audio("horeg.mp3")
+
+// waktu rt
 function updateTime() {
     const now = new Date();
     const timeElement = document.getElementById('current-time');
     const dateElement = document.getElementById('current-date');
     
-    // Format waktu
+    // atur waktu
     const hours = String(now.getHours()).padStart(2, '0');
     const minutes = String(now.getMinutes()).padStart(2, '0');
     const seconds = String(now.getSeconds()).padStart(2, '0');
     timeElement.textContent = `${hours}:${minutes}:${seconds}`;
     
-    // Format tanggal
+    // tanggal
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     dateElement.textContent = now.toLocaleDateString('id-ID', options);
 
     // Reset dismissed jika menit berganti
     resetDismissedIfNeeded(minutes);
 
-    // Cek alarm
+    // cek alarm
     checkAlarms(hours, minutes);
 }
 
-// Data alarm
+// data alarm
 let alarms = JSON.parse(localStorage.getItem('alarms')) || [];
 let activeAlarmTime = JSON.parse(localStorage.getItem('activeAlarmTime')) || null;
 
 // Daftar alarm yang diabaikan di menit yang sama (agar tidak bunyi lagi)
 let dismissedAlarms = JSON.parse(localStorage.getItem('dismissedAlarms')) || [];
 
-// Untuk mendeteksi pergantian menit
+// mendeteksi pergantian menit
 let lastMinute = null;
 
 // Reset dismissed ketika menit berubah
@@ -67,7 +69,7 @@ function displayAlarms() {
     });
 }
 
-// Tambah alarm baru
+// nambahin alarm baru
 document.getElementById('set-alarm').addEventListener('click', function() {
     const hour = document.getElementById('hour').value;
     const minute = document.getElementById('minute').value;
@@ -84,19 +86,19 @@ document.getElementById('set-alarm').addEventListener('click', function() {
     alert(`Alarm berhasil diatur untuk pukul ${hour}:${minute}`);
 });
 
-// Hapus alarm
+// hapus alarm
 function deleteAlarm(index) {
     alarms.splice(index, 1);
     localStorage.setItem('alarms', JSON.stringify(alarms));
     displayAlarms();
 }
 
-// Cek alarm
+// cek alarm
 function checkAlarms(currentHour, currentMinute) {
     const stopAlarmBtn = document.getElementById('stop-alarm');
     const timeDisplay = document.getElementById('current-time');
 
-    // Matikan alarm otomatis setelah 1 menit
+    // matikan alarm otomatis setelah 1 menit
     if (activeAlarmTime) {
         const [alarmHour, alarmMinute] = activeAlarmTime.split(':');
 
@@ -108,7 +110,7 @@ function checkAlarms(currentHour, currentMinute) {
         }
     }
 
-    // Cek alarm cocok
+    // cek alarm cocok
     const matchingAlarm = alarms.find(alarm => {
         const alarmTime = `${alarm.hour}:${alarm.minute}`;
         return (
@@ -119,17 +121,18 @@ function checkAlarms(currentHour, currentMinute) {
         );
     });
 
-    // Jika ada alarm baru
+    // jika ada alarm baru
     if (matchingAlarm) {
         const alarmTime = `${currentHour}:${currentMinute}`;
 
-        // Aktifkan alarm
+        // aktifkan alarm
         timeDisplay.classList.add('alarm-active');
         stopAlarmBtn.style.display = 'block';
         activeAlarmTime = alarmTime;
         localStorage.setItem('activeAlarmTime', JSON.stringify(activeAlarmTime));
+        suara.play()
 
-        // Jika tab tidak aktif → Notifikasi
+        // jika tab tidak aktif → Notifikasi
         if (document.hidden && Notification.permission === 'granted') {
             new Notification('Alarm Banyuwangi', {
                 body: `Waktunya bangun! Sekarang pukul ${alarmTime}`,
@@ -137,24 +140,26 @@ function checkAlarms(currentHour, currentMinute) {
             });
         }
 
-        // Alarm sudah berbunyi → masukkan ke dismissed
+        // alarm sudah berbunyi → masukkan ke dismissed
         dismissedAlarms.push(alarmTime);
         localStorage.setItem('dismissedAlarms', JSON.stringify(dismissedAlarms));
     }
 }
 
-// Cek sudah lewat 1 menit
+// cek sudah lewat 1 menit
 function isOneMinutePassed(alarmHour, alarmMinute, currentHour, currentMinute) {
     const alarmTotal = parseInt(alarmHour) * 60 + parseInt(alarmMinute);
     const currentTotal = parseInt(currentHour) * 60 + parseInt(currentMinute);
     return currentTotal >= alarmTotal + 1;
+    suara.pause()
 }
 
-// Stop alarm manual
+// stop alarm manual
 document.getElementById('stop-alarm').addEventListener('click', function() {
     const timeDisplay = document.getElementById('current-time');
     timeDisplay.classList.remove('alarm-active');
     this.style.display = 'none';
+    suara.pause()
 
     if (activeAlarmTime) {
         dismissedAlarms.push(activeAlarmTime);
@@ -165,7 +170,7 @@ document.getElementById('stop-alarm').addEventListener('click', function() {
     localStorage.removeItem('activeAlarmTime');
 });
 
-// Minta izin notifikasi
+// njalok izin notifikasi
 if ('Notification' in window && Notification.permission === 'default') {
     Notification.requestPermission();
 }
@@ -174,5 +179,9 @@ if ('Notification' in window && Notification.permission === 'default') {
 updateTime();
 displayAlarms();
 setInterval(updateTime, 1000);
+
+function pulauMerah(){
+    document.querySelector('body').style.background
+}
 
 
